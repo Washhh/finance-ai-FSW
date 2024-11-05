@@ -1,3 +1,5 @@
+import { Button } from "./_components/ui/button";
+
 export default function Home() {
-  return <div className="flex items-start">a</div>;
+  return <Button>Opa</Button>;
 }
