@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  app:
+    image: finance-ai
+    build:
+      context: ./
+      target: dev
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3001:3000"
+  database:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=finance_ai_user
+      - POSTGRES_PASSWORD=finance_ai_password
+      - POSTGRES_DB=finance-ai-db
+    ports:
+      - '5432:5432'
