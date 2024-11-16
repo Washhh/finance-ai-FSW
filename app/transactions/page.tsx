@@ -3,9 +3,14 @@ import Navbar from "../_components/navbar";
 import { DataTable } from "../_components/ui/data-table";
 import { db } from "../_lib/prisma";
 import { transactionsColumns } from "./_columns";
+import { auth } from "@clerk/nextjs/server";
 
 const TransactionsPage = async () => {
+  const { userId } = auth();
   const transactions = await db.transaction.findMany({
+    where: {
+      userId: userId!,
+    },
     orderBy: {
       date: "desc",
     },
