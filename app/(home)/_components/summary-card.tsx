@@ -8,6 +8,7 @@ interface SummaryCardProps {
   size: "small" | "large";
   customButton?: ReactNode;
   customAmountColor?: string;
+  customBgColor?: string;
 }
 
 const SummaryCard = ({
@@ -17,17 +18,17 @@ const SummaryCard = ({
   size,
   customButton,
   customAmountColor,
+  customBgColor,
 }: SummaryCardProps) => {
   return (
-    <Card>
-      <CardHeader className="flex-row items-center gap-4">
+    <Card className={customBgColor}>
+      <CardHeader className="flex-row items-center gap-2">
         {icon}
         <p
           className={
-            size === "small"
-              ? "m-0 text-muted-foreground"
-              : "text-white opacity-70"
+            size === "small" ? "text-muted-foreground" : "text-white opacity-70"
           }
+          style={{ margin: 0 }} // removendo margin forçado do space do cardHeader
         >
           {title}
         </p>
