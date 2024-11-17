@@ -96,7 +96,7 @@ const UpsertTransactionDialog = ({
       category: TransactionCategory.OTHER,
       date: new Date(),
       name: "",
-      paymentMethod: TransactionPaymentMethod.CASH,
+      paymentMethod: TransactionPaymentMethod.CREDIT_CARD,
       type: TransactionType.EXPENSE,
     },
   });

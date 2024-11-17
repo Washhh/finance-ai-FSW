@@ -14,20 +14,32 @@ const ExpensesPerCategory = ({
   return (
     <ScrollArea className="col-span-2 h-full rounded-md border pb-6">
       <CardHeader>
-        <CardTitle className="font-bold">Gastos por Categoria</CardTitle>
+        <CardTitle className="font-bold">Despesas por Categoria</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {expensesPerCategory.map((category) => (
-          <div key={category.category} className="space-y-2">
-            <div className="flex w-full justify-between">
-              <p className="text-sm font-bold">
-                {TRANSACTION_CATEGORY_LABELS[category.category]}
-              </p>
-              <p className="text-sm font-bold">{category.percentageOfTotal}%</p>
+        {expensesPerCategory.length ? (
+          expensesPerCategory.map((category) => (
+            <div key={category.category} className="space-y-2">
+              <div className="flex w-full justify-between">
+                <p className="text-sm font-bold">
+                  {TRANSACTION_CATEGORY_LABELS[category.category]}
+                </p>
+                <p className="text-sm font-bold">
+                  {category.percentageOfTotal}% -{" "}
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(category.totalAmount)}
+                </p>
+              </div>
+              <Progress value={category.percentageOfTotal} />
             </div>
-            <Progress value={category.percentageOfTotal} />
+          ))
+        ) : (
+          <div className="mt-8 flex h-full justify-center">
+            <p className="text-lg">Ainda não há despesas registradas</p>
           </div>
-        ))}
+        )}
       </CardContent>
     </ScrollArea>
   );
